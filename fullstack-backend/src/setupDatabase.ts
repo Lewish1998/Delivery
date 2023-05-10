@@ -1,8 +1,9 @@
 import mongoose, { mongo } from 'mongoose';
+import { config } from './config';
 
 export default () => {
     const connect = () => {
-        mongoose.connect('mongodb://localhost:27017/deliveryapp-backend')
+        mongoose.connect(`${config.DATABASE_URL}`)
             .then(() => {
               console.log("Succesfully connected to database.");
             })
