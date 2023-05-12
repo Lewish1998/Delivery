@@ -1,4 +1,3 @@
-import { CustomError, IErrorResponce } from './shared/globals/helpers/error-handlers';
 import { Application, json, urlencoded, Response, Request, NextFunction } from 'express';
 import http from 'http';
 import cors from 'cors';
@@ -12,8 +11,11 @@ import { createClient } from 'redis';
 import { createAdapter } from '@socket.io/redis-adapter';
 import Logger from 'bunyan';
 import 'express-async-errors';
-import { config } from './config';
-import applicationRoutes from './routes';
+import { config } from '@root/config';
+import applicationRoutes from '@root/routes';
+import { CustomError, IErrorResponce } from '@global/helpers/error-handlers';
+
+
 
 const SERVER_PORT = 5000;
 const log: Logger = config.createLogger('server');
@@ -111,5 +113,7 @@ export class DeliveryServer {
 		});
 	}
 
-	private socketIOConnections(io: Server): void {}
+	private socketIOConnections(io: Server): void {
+		log.info('socketIO connections');
+	}
 }
